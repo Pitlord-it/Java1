@@ -1,4 +1,5 @@
 import java.util.Arrays;
+import java.util.Scanner;
 
 
 public class JavaOne {
@@ -73,7 +74,7 @@ public class JavaOne {
 
     //  4) Programma che stampa l'elemento più grande di un array di numeri 
 
-
+     System.out.println("\nProgramma che stampa l'elemento più grande di un array di numeri:");
     double[] numbers = {4.5, 6.12, 11.8, 9.7, 0.6, -1.2};
     double max = numbers[0];
     System.out.println("Array: " + Arrays.toString(numbers));
@@ -96,7 +97,39 @@ public class JavaOne {
 
 
 
-    // 6) Controllare se una stringa è palindroma
+    // 5) Creare un programma che chiede un numero all'utente per poi dichiarare un array con lunghezza pari al numero inserito.Successivamente riempire l'array chiedendo quali numeri inserire all'utente per poi calcolarne la sommatoria
+     
+    System.out.println("\nProgramma che crea un array dinamicamente in base all'input utente:");
+    Scanner scanner = new Scanner(System.in);
+    System.out.print("Quanti numeri vuoi inserire nell'array? ");
+    int array_length = scanner.nextInt();
+    double[] array = new double[array_length];
+
+    System.out.println("Inserisci i numeri nell'array (usa la virgola per i decimali):");
+    int cont = 0;
+    
+    // ciclo per inserire i numeri nell'array
+    while (cont<array_length) {
+       System.out.print("Inserisci il " + (cont+1) + "o numero:");
+       array[cont] = scanner.nextDouble();
+       cont++;
+    }
+
+     System.out.println("Array inserito: " + Arrays.toString(array));
+     
+     double sommatoria = 0 ;
+     for (int i=0; i<array_length; i++ ) {
+        
+        sommatoria += array[i];
+
+     }
+     System.out.println("La somma degli elementi dell'array è: " + sommatoria + "\n");
+
+    scanner.close();
+
+
+
+    // 6) Extra: Controllare se una stringa è palindroma
 
      System.out.println("\nProgramma che controlla se una stringa è palindroma (eventuali spazi vengono rimossi, metodo case sensitive):");
     String string = "i topi non avevano nipoti";
@@ -121,5 +154,41 @@ public class JavaOne {
 
     }
 
+
+
+    // 7) Extra: Creare un programma che controlla se ci sono due vocali ripetute consecutivamente in una stringa
+        System.out.println("\nProgramma che controlla se ci sono due vocali ripetute consecutivamente in una stringa:");
+        String text = "Zootecnia"; 
+        System.out.println("Stringa da controllare: " + text);
+        
+        // viene chiamata la funzione che controlla se ci sono due vocali uguali consecutive (la funzione è dichiarata più in basso)
+        if (repeatedConsecutiveVowels(text)) {
+            System.out.println("Risultato: La stringa contiene due vocali uguali consecutive.");
+        } else {
+             System.out.println("Risultato: La stringa NON contiene due vocali uguali consecutive.");
+        }
+
   }
+
+//   funzione che controlla se ci sono due vocali uguali consecutive in una stringa
+   public static boolean repeatedConsecutiveVowels(String str) {
+    
+        // Conversione in minuscolo per rendere il controllo non case sensitive
+        String stringaMinuscola = str.toLowerCase();
+        
+        // ciclo che controlla ogni carattere della stringa e il successivo per verificare se sono vocali uguali consecutive
+        for (int i = 0; i < stringaMinuscola.length() - 1; i++) {
+            char c = stringaMinuscola.charAt(i);
+            char successivo = stringaMinuscola.charAt(i + 1);
+
+            if ((c == 'a' || c == 'e' || c == 'i' || c == 'o' || c == 'u') && c == successivo) {
+                return true;
+            }
+
+        }
+        
+        return false; 
+    }
+
+
 }
